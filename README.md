@@ -4,6 +4,7 @@ Setup
     Setup Application under test: http://localhost:2221/
     Download and install Git bash on Windows
     npm init playwright@1.17.123
+    npm install --save uuid@9.0.0
 
 Running the playwright test
     Add in package.json:

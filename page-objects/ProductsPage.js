@@ -5,7 +5,9 @@ export class ProductsPage{
     constructor(page){
         this.page=page
 
-        this.addButtons = page.locator('[data-qa="product-button"]');
+        this.addButtons = page.locator('[data-qa="product-button"]')
+        this.sortDropdown = page.locator('[data-qa="sort-dropdown"]')
+        this.productTitle = page.locator('[data-qa="product-title"]')
     }
 
     visit = async () => {
@@ -23,5 +25,18 @@ export class ProductsPage{
         const basketCountAfterAdding = await navigation.getbasketCount()
         expect(basketCountAfterAdding).toBeGreaterThan(basketCountBeforeAdding)
 
+    }
+
+    sortByCheapest = async () => {
+        await this.sortDropdown.waitFor()
+        //get order of products
+        await this.productTitle.first().waitFor()
+        const productTitleBeforeSorting = this.productTitle.allInnerTexts()
+        await this.sortDropdown.selectOption("price-asc")
+        //get order of products
+        const productTitleAfterSorting = this.productTitle.allInnerTexts()
+        //expect that these lists are different
+        expect(productTitleAfterSorting).not.toEqual(productTitleBeforeSorting)
+        // await this.page.pause()
     }
 }
