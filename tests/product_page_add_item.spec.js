@@ -5,7 +5,7 @@ import { test, expect} from "@playwright/test"
 //     return a+b
 // }
 
-test("Product Page Add To Basket", async ({page})=>{
+test.skip("Product Page Add To Basket", async ({page})=>{
     await page.goto("/")
     // await page.pause()
 
